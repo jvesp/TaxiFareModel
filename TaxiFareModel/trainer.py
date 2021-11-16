@@ -48,6 +48,7 @@ class Trainer():
 
     def run(self):
         # train the pipelined model
+        self.set_pipeline()
         self.pipe.fit(self.X, self.y)
 
 
@@ -71,7 +72,6 @@ if __name__ == "__main__":
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
     # train
     T = Trainer(X_train,y_train)
-    T.set_pipeline()
     T.run()
     # evaluate
     T.evaluate(X_test, y_test)
