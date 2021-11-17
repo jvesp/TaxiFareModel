@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/julienvesperini/code/jvesp/TaxiFareModel/mlruns/1/cda748b3eeb04c479d02cd6da884fa87/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+name: ''
+run_id: cda748b3eeb04c479d02cd6da884fa87
+run_uuid: cda748b3eeb04c479d02cd6da884fa87
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1637071805556
+status: 1
+tags: []
+user_id: unknown

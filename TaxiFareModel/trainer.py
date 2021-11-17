@@ -13,6 +13,7 @@ from sklearn.linear_model import LinearRegression
 from memoized_property import memoized_property
 import mlflow
 from mlflow.tracking import MlflowClient
+import joblib
 
 
 # Constante defined for MLflow only
@@ -56,6 +57,7 @@ class Trainer():
         self.pipe = Pipeline([('preproc', self.preproc_pipe),
                               ('linear_model', LinearRegression())])
 
+        # the line below is for mlflow only:
         self.mlflow_log_param('linear model', 'LinearRegression')
 
     def run(self):
@@ -69,7 +71,10 @@ class Trainer():
         y_pred = self.pipe.predict(X_test)
         rmse = compute_rmse(y_pred, y_test)
         print(rmse)
+
+        # the line below is for mlflow only:
         self.mlflow_log_metric('rmse',rmse)
+
         return rmse
 
     ## ADDING ML FLOW
@@ -96,6 +101,10 @@ class Trainer():
     def mlflow_log_metric(self, key, value):
         self.mlflow_client.log_metric(self.mlflow_run.info.run_id, key, value)
 
+    # Save with JobLib
+    def save_model(self):
+        joblib.dump(self.pipe, 'model.joblib')
+
 
 
 if __name__ == "__main__":
@@ -113,3 +122,6 @@ if __name__ == "__main__":
     T.run()
     # evaluate
     T.evaluate(X_test, y_test)
+
+    #Savemodel with JobLib
+    T.save_model()
